@@ -1,6 +1,7 @@
 package oss.process.scrum.managed.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -57,13 +58,30 @@ public class OrganizationManagedBean implements Serializable {
 
     public String createOrganization() {
         try {
-            getOrganization().setStatus("ACTIVE");
             organizationService.create(getOrganization());
         } catch (AppException e) {
             return ERROR;
         }
 
         return SUCCESS;
+    }
+
+    public String updateOrganization() {
+        try {
+            organizationService.update(getOrganization());
+        } catch (AppException e) {
+            return ERROR;
+        }
+
+        return SUCCESS;
+    }
+
+    public List<Organization> getOrganizations() {
+        try {
+            return organizationService.retrieveAll();
+        } catch (AppException e) {
+            return null;
+        }
     }
 
     public void reset() {
