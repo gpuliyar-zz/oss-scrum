@@ -25,6 +25,14 @@
 					</p:inputText> <p:message id="nameMsg" for="name" display="icon" /></td>
 			</tr>
 			<tr>
+				<td><h:outputLabel for="status" value="Status : " /></td>
+				<td><p:inputText id="status"
+						value="#{organizationManagedBean.organization.status}">
+						<f:validateLength minimum="2" />
+						<p:ajax event="blur" update="statusMsg" />
+					</p:inputText> <p:message id="statusMsg" for="status" display="icon" /></td>
+			</tr>
+			<tr>
 				<td><p:commandButton id="addOrganization" value="Add"
 						action="#{organizationManagedBean.createOrganization}"
 						ajax="false" /></td>
