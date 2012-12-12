@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition>
-<ui:composition template="./WEB-INF/ui/layouts/layout-home.xhtml"
+<ui:composition template="./WEB-INF/ui/layouts/layout-base.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -16,6 +16,7 @@
                 <div class="span9">
                     <h2><i class="icon icon-camera"></i> <h:outputText value="#{i18n['global.title']}" /></h2>
                     <p><h:outputText value="#{i18n['global.description']}"/></p>
+                    <p:colorPicker/>
                 </div>
             </div>
         </div>
