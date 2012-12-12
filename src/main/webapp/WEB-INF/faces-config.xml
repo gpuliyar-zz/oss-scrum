@@ -8,9 +8,17 @@
   	
   	<!-- JSF and Spring are integrated -->
   	<application>
-    	<el-resolver>
-    		org.springframework.web.jsf.el.SpringBeanFacesELResolver
-    	</el-resolver>
+            <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+            
+            <locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>es</supported-locale>
+			<supported-locale>fr</supported-locale>
+            </locale-config>
+            <resource-bundle>
+                <base-name>properties.i18n.i18n</base-name>
+                <var>i18n</var>
+            </resource-bundle>
   	</application>
 	
 	<!-- configuration of navigation rules -->	
