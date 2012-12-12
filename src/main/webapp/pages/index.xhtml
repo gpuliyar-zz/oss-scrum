@@ -1,45 +1,72 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Welcome to OSS Scrum</title>
-</h:head>
-<h:body>
-	<h:form>
-		<table>
-			<tr>
-				<td><h:outputLabel for="id" value="Id : " /></td>
-				<td><p:inputText id="id"
-						value="#{organizationManagedBean.organization.id}">
-						<f:validateLength minimum="5" />
-						<p:ajax event="blur" update="idMsg" />
-					</p:inputText> <p:message id="idMsg" for="id" display="icon" /></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="name" value="Name : " /></td>
-				<td><p:inputText id="name"
-						value="#{organizationManagedBean.organization.name}">
-						<f:validateLength minimum="5" />
-						<p:ajax event="blur" update="nameMsg" />
-					</p:inputText> <p:message id="nameMsg" for="name" display="icon" /></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="status" value="Status : " /></td>
-				<td><p:inputText id="status"
-						value="#{organizationManagedBean.organization.status}">
-						<f:validateLength minimum="2" />
-						<p:ajax event="blur" update="statusMsg" />
-					</p:inputText> <p:message id="statusMsg" for="status" display="icon" /></td>
-			</tr>
-			<tr>
-				<td><p:commandButton id="addOrganization" value="Add"
-						action="#{organizationManagedBean.createOrganization}"
-						ajax="false" /></td>
-				<td><p:commandButton id="reset" value="Reset"
-						action="#{organizationManagedBean.reset}" ajax="false" /></td>
-			</tr>
-		</table>
-	</h:form>
-</h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Welcome to OSS Scrum</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <table>
+                <tr>
+                    <td><h:outputLabel for="id" value="Id : " /></td>
+                    <td><p:inputText id="id"
+                                     value="#{organizationManagedBean.organization.id}">
+                            <f:validateLength minimum="5" />
+                            <p:ajax event="blur" update="idMsg" />
+                        </p:inputText> <p:message id="idMsg" for="id" display="icon" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="name" value="Name : " /></td>
+                    <td><p:inputText id="name"
+                                     value="#{organizationManagedBean.organization.name}">
+                            <f:validateLength minimum="5" />
+                            <p:ajax event="blur" update="nameMsg" />
+                        </p:inputText> <p:message id="nameMsg" for="name" display="icon" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="status" value="Status : " /></td>
+                    <td><p:inputText id="status"
+                                     value="#{organizationManagedBean.organization.status}">
+                            <f:validateLength minimum="2" />
+                            <p:ajax event="blur" update="statusMsg" />
+                        </p:inputText> <p:message id="statusMsg" for="status" display="icon" /></td>
+                </tr>
+                <tr>
+                    <td><p:commandButton id="addOrganization" value="Add"
+                                         action="#{organizationManagedBean.createOrganization}"
+                                         ajax="false"
+                                         update=":list"/></td>
+                    <td><p:commandButton id="reset" value="Reset"
+                                         action="#{organizationManagedBean.reset}" ajax="false" /></td>
+                </tr>
+            </table>
+
+            <p:dataTable id="list" value="#{organizationManagedBean.organizations}" var="organization">
+                <p:column headerText="id">  
+                    <h:outputText value="#{organization.id}" />  
+                </p:column>  
+
+                <p:column headerText="name">  
+                    <h:outputText value="#{organization.name}" />  
+                </p:column>  
+
+                <p:column headerText="code">  
+                    <h:outputText value="#{organization.code}" />  
+                </p:column>  
+
+                <p:column headerText="description">  
+                    <h:outputText value="#{organization.description}" />  
+                </p:column>
+
+                <p:column headerText="action">  
+                    <h:outputText value="#{organization.action}" />  
+                </p:column>
+
+                <p:column headerText="status">  
+                    <h:outputText value="#{organization.status}" />  
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
 </html>
