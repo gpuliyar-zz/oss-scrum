@@ -1,0 +1,49 @@
+.main-navigation a {
+	padding: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.navigation-icons(@imageUrl, @colorOne: #fefefe, @colorTwo: #efefef, @fallbackColor: #efefef) {
+	.background-image-with-gradient(@imageUrl, @colorOne, @colorTwo, @fallbackColor);
+	display: block;
+	min-height: 60px;
+	background-repeat: no-repeat;
+	background-position: 95%;
+	background-color: #efefef;
+}
+
+// For default state.
+.main-navigation .nav-icon.resource-allocation {	
+	.navigation-icons('img/navigation/resource-allocation.png');
+}
+
+.main-navigation .nav-icon.burn-down {
+	.navigation-icons('img/navigation/burn-down.png');
+}
+
+.main-navigation .nav-icon.reports {
+	.navigation-icons('img/navigation/reports.png');
+}
+
+.main-navigation .nav-icon.product-backlog {
+	.navigation-icons('img/navigation/product-backlog.png');
+}
+
+
+// For active state.
+.main-navigation .nav-icon.resource-allocation.ui-state-active {
+	.navigation-icons('img/navigation/resource-allocation.png', #efefef, @white, @white);
+}
+
+.main-navigation .nav-icon.burn-down.ui-state-active {
+	.navigation-icons('img/navigation/burn-down.png', #efefef, @white, @white);
+}
+
+.main-navigation .nav-icon.reports.ui-state-active {
+	.navigation-icons('img/navigation/reports.png', #efefef, @white, @white);
+}
+
+.main-navigation .nav-icon.product-backlog.ui-state-active {
+	.navigation-icons('img/navigation/product-backlog.png', #efefef, @white, @white);
+}

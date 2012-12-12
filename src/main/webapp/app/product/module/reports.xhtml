@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:dataList value="#{organizationManagedBean.allOrganizations}" var="organization">
+        <strong>#{organization.name}</strong>
+        <p>#{organization.description}</p>
+    </p:dataList>
+    
+</ui:composition>
