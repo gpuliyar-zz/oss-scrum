@@ -2,3 +2,4 @@
 install.sh
 target/*
 test-output/*
+bin/*
