@@ -1,26 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition>
-<ui:composition template="./WEB-INF/ui/layouts/layout-base.xhtml"
+<ui:composition template="./WEB-INF/ui/layouts/layout-site.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="layout-home">
-
+    <ui:define name="layout-site">
         <div class="hero-unit">
-            <div class="row-fluid">
-                <div class="span3">
-                </div>
-                <div class="span9">
-                    <h2><i class="icon icon-camera"></i> <h:outputText value="#{i18n['global.title']}" /></h2>
-                    <p><h:outputText value="#{i18n['global.description']}"/></p>
-                    <p:colorPicker/>
-                </div>
-            </div>
+            <h2><i class="icon icon-cogs"></i><h:outputText value=" " /><h:outputText value="#{i18n['global.title']}" /></h2>
+            <p><h:outputText value="#{i18n['global.description']}"/></p>
         </div>
-
     </ui:define>
 
 </ui:composition>
