@@ -1,13 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition>
-<ui:composition template="./../WEB-INF/ui/layouts/layout-app.xhtml"
+<ui:composition template="./../WEB-INF/ui/layouts/layout-application.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html">
 
-    <ui:define name="layout-app">
+    <ui:define name="layout-application-sidebar">
+    </ui:define>
+
+    <ui:define name="layout-application-main">
         <ui:include src="product/product.xhtml"></ui:include>
     </ui:define>
 

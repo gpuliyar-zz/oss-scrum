@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="layout-base.xhtml">
+
+    <ui:define name="layout-base">
+        <div class="row-fluid">
+            <div class="span3">
+                <ui:insert name="layout-application-sidebar"></ui:insert>
+            </div>
+
+            <div class="span9">
+                <ui:insert name="layout-application-main"></ui:insert>  
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
