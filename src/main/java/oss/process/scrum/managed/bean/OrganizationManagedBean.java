@@ -10,7 +10,7 @@ import javax.faces.bean.RequestScoped;
 
 import oss.process.scrum.domain.Organization;
 import oss.process.scrum.exception.AppException;
-import oss.process.scrum.service.IOrganizationService;
+import oss.process.scrum.service.OrganizationService;
 
 @ManagedBean(name = "organizationManagedBean")
 @RequestScoped
@@ -20,18 +20,18 @@ public class OrganizationManagedBean implements Serializable {
     private static final String ERROR = "error";
 
     @ManagedProperty(value = "#{organizationService}")
-    private IOrganizationService organizationService;
+    private OrganizationService organizationService;
     /**
      * @return the organizationService
      */
-    public IOrganizationService getOrganizationService() {
+    public OrganizationService getOrganizationService() {
         return organizationService;
     }
 
     /**
      * @param organizationService the organizationService to set
      */
-    public void setOrganizationService(IOrganizationService organizationService) {
+    public void setOrganizationService(OrganizationService organizationService) {
         this.organizationService = organizationService;
     }
 
