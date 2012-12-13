@@ -2,6 +2,12 @@ install.sh
 target/*
 test-output/*
 bin/*
+.classpath
+faces-config.NavData
+.metadata
+.project
+.settings
+target
 
 # Ignore NetBeans and Glassfish specific files
 src/main/webapp/WEB-INF/glassfish-web.xml
