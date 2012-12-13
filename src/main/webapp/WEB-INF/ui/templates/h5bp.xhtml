@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html>
+<!-- TODO See http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither -->
+<!-- See http://showcase-omnifaces.rhcloud.com/showcase/components/conditionalComment.xhtml -->
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+			xmlns:f="http://java.sun.com/jsf/core"
+			xmlns:h="http://java.sun.com/jsf/html"
+			xmlns="http://www.w3.org/1999/xhtml">
+
+  <h:head>
+    <meta charset="utf-8"></meta>
+		
+		<!-- Web page icon -->
+		<link rel="shortcut icon" href="favicon.ico" />
+
+		<link rel="author" href="/humans.txt" />
+		<meta name="description" content="Meeting Minutes"></meta>
+
+		<!-- Mobile viewport optimized: h5bp.com/viewport -->
+		<meta name="viewport" content="width=device-width"></meta>
+
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+		<title>#{i18n['global.title']}</title>
+
+		<h:outputStylesheet library="less" name="style.css" />
+
+		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+		<!-- All JavaScript at the bottom, except this Modernizr build.
+				 Modernizr enables HTML5 elements & feature detects for optimal performance.
+				 Create your own custom Modernizr build: www.modernizr.com/download/ -->
+		<!--<h:outputScript library="js" name="vendor/modernizr/modernizr-2.5.3-respond-1.1.0.min.js" />-->
+  </h:head>
+
+  <h:body>
+		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+		<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+    <ui:insert name="h5bp"></ui:insert>
+
+  </h:body>
+</html>

@@ -1,5 +1,8 @@
-.*
 install.sh
 target/*
 test-output/*
 bin/*
+
+# Ignore NetBeans and Glassfish specific files
+src/main/webapp/WEB-INF/glassfish-web.xml
+.nbproject

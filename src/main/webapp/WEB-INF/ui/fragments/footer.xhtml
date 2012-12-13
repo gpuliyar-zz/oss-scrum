@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+								xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+								xmlns:f="http://java.sun.com/jsf/core"
+								xmlns:h="http://java.sun.com/jsf/html">
+
+	<footer>
+		<hr />
+
+		<p>
+			<small>
+				<h:outputFormat value="#{i18n['global.copyright']}">
+					<f:param value="&#169;" />
+					<f:param value="#{i18n['global.copyright.year']}" />
+					<f:param value="#{i18n['global.author']}" />
+				</h:outputFormat>
+			</small>
+		</p>
+	</footer>
+
+</ui:composition>
