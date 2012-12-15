@@ -9292,6 +9292,13 @@ body {
 .ui-cell-editor-input input {
   width: 118px;
 }
+.ui-datatable.datatable-header-toolbar .ui-datatable-header {
+  padding: 0;
+}
+.ui-datatable.datatable-header-toolbar .ui-toolbar .ui-toolbar-group-left,
+.ui-datatable.datatable-header-toolbar .ui-toolbar .ui-toolbar-group-right {
+  float: none;
+}
 .ui-selectonebutton input {
   display: none;
 }
