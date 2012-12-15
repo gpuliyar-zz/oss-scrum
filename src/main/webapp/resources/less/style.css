@@ -8517,14 +8517,15 @@ ul.icons li .icon-large:before {
   content: "\f200";
 }
 /* Make the vertical scroll bar always appear so it doesn't cause browser-quakes! */
+/*
 body {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
+*/
 .messenger-ajaxstatus {
   position: absolute;
   top: 50px;
   left: 46%;
-  z-index: 1023;
 }
 /*
 // Use if using navbar-fixed-top for the navbar.
@@ -8544,8 +8545,8 @@ body {
   bottom: 20px;
   right: 20px;
 }
-.ui-helper-hidden {
-  display: none !important;
+.ui-selectonebutton input {
+  display: none;
 }
 .dropdown-form {
   margin: 15px;
