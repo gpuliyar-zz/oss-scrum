@@ -9289,6 +9289,9 @@ body {
   bottom: 20px;
   right: 20px;
 }
+.ui-cell-editor-input input {
+  width: 118px;
+}
 .ui-selectonebutton input {
   display: none;
 }
