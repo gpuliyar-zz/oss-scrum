@@ -1,6 +1,12 @@
 /* Make the vertical scroll bar always appear so it doesn't cause browser-quakes! */
-/*
+
 body {
-    overflow-y: scroll; 
+    overflow-y: scroll;
 }
-*/
+
+.messenger-ajaxstatus {
+    position: absolute;
+    top: @navbarHeight;
+    left: 46%; // Not 50% because we need the exact center of the message/icon.
+    z-index: 1023;
+}
