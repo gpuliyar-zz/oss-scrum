@@ -79,19 +79,4 @@
             </div>
         </div>
     </div>
-
-    <h:form id="growl-form">
-        <p:growl id="messenger-growl" sticky="true" showDetail="true" widgetVar="messengerGrowl"></p:growl>
-    </h:form>
-
-    <p:ajaxStatus styleClass="messenger-ajaxstatus">
-        <f:facet name="start">
-            <a class="btn btn-info disabled"><i class="icon-refresh"></i> Please wait...</a>
-        </f:facet>
-
-        <f:facet name="complete">
-            <h:outputText value="" />
-        </f:facet>
-    </p:ajaxStatus>
-
 </ui:composition>
