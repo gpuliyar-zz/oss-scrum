@@ -24,30 +24,79 @@
 
         </p:toolbar>
 
-        <p:dataTable id="organization-datatable" value="#{organizationManagedBean.organizations}" var="organization">
+        <p:dataTable id="organization-datatable" value="#{organizationManagedBean.organizations}" var="organization" editable="true">
             <p:column headerText="id">
-                <h:outputText value="#{organization.id}" />
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{organization.id}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{organization.id}" />
+                    </f:facet>
+                </p:cellEditor>
             </p:column>
 
             <p:column headerText="name">
-                <h:outputText value="#{organization.name}" />
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{organization.name}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{organization.name}" />
+                    </f:facet>
+                </p:cellEditor>
             </p:column>
 
             <p:column headerText="code">
-                <h:outputText value="#{organization.code}" />
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{organization.code}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{organization.code}" />
+                    </f:facet>
+                </p:cellEditor>
             </p:column>
 
             <p:column headerText="description">
-                <h:outputText value="#{organization.description}" />
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{organization.description}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{organization.description}" />
+                    </f:facet>
+                </p:cellEditor>
             </p:column>
 
             <p:column headerText="action">
-                <h:outputText value="#{organization.action}" />
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{organization.action}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{organization.action}" />
+                    </f:facet>
+                </p:cellEditor>
             </p:column>
 
             <p:column headerText="status">
-                <h:outputText value="#{organization.status}" />
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{organization.status}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{organization.status}" />
+                    </f:facet>
+                </p:cellEditor>
             </p:column>
+
+            <p:column headerText="Edit">
+                <p:rowEditor />
+            </p:column>
+
+            <p:ajax event="rowEdit" listener="#{organizationManagedBean.updateOrganization}" update="@this, organization-datatable, :growl-form:messenger-growl" />
+
         </p:dataTable>
     </h:form>
 
