@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service(value = "authenticationService")
 public class AuthenticationServiceImpl implements AuthenticationService {
-    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Override

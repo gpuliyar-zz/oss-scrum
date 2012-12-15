@@ -46,9 +46,6 @@
 		</property>
 	</bean>
 
-	<bean id="preAuthenticatedEntryPoint"
-		class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
-
 	<!-- Activates annotation-based bean configuration -->
 	<context:annotation-config />
 	<context:component-scan base-package="oss" />
@@ -61,21 +58,4 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
-
-	<security:http entry-point-ref="preAuthenticatedEntryPoint"
-		auto-config="true" access-denied-page="/faces/accessDenied.xhtml">
-		<security:anonymous enabled="false" />
-		<security:form-login login-page="/faces/login.xhtml" />
-		<security:intercept-url pattern="/faces/admin/**"
-			access="ROLE_ADMIN" />
-	</security:http>
-
-	<security:global-method-security
-		secured-annotations="enabled" jsr250-annotations="enabled">
-	</security:global-method-security>
-
-	<security:authentication-manager alias="authenticationManager">
-		<security:authentication-provider
-			user-service-ref="userService" />
-	</security:authentication-manager>
 </beans>

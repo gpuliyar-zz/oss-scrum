@@ -30,7 +30,13 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Debug</param-value>
     </context-param>
-        
+    
+    <!-- PrimeFaces theme -->
+    <context-param>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>bootstrap</param-value>  
+    </context-param>
+
     <!-- Strip XML comments out of Facelets before delivering to the client. See http://myfaces.apache.org/core20/myfaces-impl/webconfig.html#javax_faces_FACELETS_SKIP_COMMENTS -->
     <context-param>
         <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>

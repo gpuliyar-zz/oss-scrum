@@ -12,3 +12,4 @@ target
 # Ignore NetBeans and Glassfish specific files
 src/main/webapp/WEB-INF/glassfish-web.xml
 .nbproject
+nb-configuration.xml

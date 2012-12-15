@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import oss.process.scrum.domain.Organization;
 import oss.process.scrum.exception.AppException;
@@ -56,14 +58,14 @@ public class OrganizationManagedBean implements Serializable {
         this.organization = organization;
     }
 
-    public String createOrganization() {
+    public void createOrganization() {
+        FacesContext context = FacesContext.getCurrentInstance();
         try {
             organizationService.create(getOrganization());
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Organization was created successfully!", this.getOrganization().toString()));
         } catch (AppException e) {
-            return ERROR;
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error creating organization.", e.getLocalizedMessage()));
         }
-
-        return SUCCESS;
     }
 
     public String updateOrganization() {

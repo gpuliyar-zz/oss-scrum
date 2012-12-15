@@ -83,4 +83,9 @@ public class Organization implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Organization{" + "id=" + id + ", name=" + name + ", code=" + code + ", description=" + description + ", action=" + action + ", status=" + status + '}';
+    }
 }

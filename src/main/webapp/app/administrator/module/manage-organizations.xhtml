@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition>
-<ui:composition template="./WEB-INF/ui/layouts/layout-application.xhtml"
+<ui:composition template="/WEB-INF/ui/layouts/layout-application.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -12,7 +12,23 @@
     </ui:define>
 
     <ui:define name="layout-application-main">
-        <p:dataTable id="list" value="#{organizationManagedBean.organizations}" var="organization">
+        <h:form id="administrator-manage-organizations">
+            <p:toolbar>
+                <p:toolbarGroup align="left">
+                    <p:commandButton id="new-organization-commandbutton" type="button" value="New" icon="ui-icon-document" />
+                </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+                    <p:menuButton value="Export...">
+                        <p:menuitem value="as PDF" icon="ui-icon-document" />
+                        <p:menuitem value="as Excel" icon="ui-icon-document" />
+                        <p:menuitem value="as CSV" title="Comma separated value file." icon="ui-icon-document" />
+                    </p:menuButton>
+                </p:toolbarGroup>
+
+            </p:toolbar>
+
+            <p:dataTable id="organization-datatable" value="#{organizationManagedBean.organizations}" var="organization">
                 <p:column headerText="id">
                     <h:outputText value="#{organization.id}" />
                 </p:column>
@@ -37,6 +53,63 @@
                     <h:outputText value="#{organization.status}" />
                 </p:column>
             </p:dataTable>
+        </h:form>
+        <p:overlayPanel my="left top" id="new-organization-overlaypanel" for="administrator-manage-organizations:new-organization-commandbutton" hideEffect="fade">
+            <h:form styleClass="form-horizontal dropdown-form">
+                <div class="control-group">
+                    <label class="control-label" for="new-organization-form-id"><i class="icon-key"></i> ID</label>
+                    <div class="controls">
+                        <p:inputText id="new-organization-form-id" value="#{organizationManagedBean.organization.id}" />
+                        <p:watermark for="new-organization-form-id" value="ID" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="new-organization-form-name"><i class="icon-key"></i> Name</label>
+                    <div class="controls">
+                        <p:inputText id="new-organization-form-name" value="#{organizationManagedBean.organization.name}" />
+                        <p:watermark for="new-organization-form-name" value="Name" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="new-organization-form-code"><i class="icon-key"></i> code</label>
+                    <div class="controls">
+                        <p:inputText id="new-organization-form-code" value="#{organizationManagedBean.organization.code}" />
+                        <p:watermark for="new-organization-form-code" value="code" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="new-organization-form-description"><i class="icon-key"></i> description</label>
+                    <div class="controls">
+                        <p:inputTextarea id="new-organization-form-description" autoResize="false" value="#{organizationManagedBean.organization.description}" />
+                        <p:watermark for="new-organization-form-description" value="description" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="new-organization-form-action"><i class="icon-key"></i> action</label>
+                    <div class="controls">
+                        <p:inputText id="new-organization-form-action" value="#{organizationManagedBean.organization.action}" />
+                        <p:watermark for="new-organization-form-action" value="action" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="new-organization-form-status"><i class="icon-key"></i> status</label>
+                    <div class="controls">
+                        <p:selectOneButton id="new-organization-form-status" value="#{organizationManagedBean.organization.status}">
+                            <f:selectItem itemLabel="Active" itemValue="ACTIVE" />
+                            <f:selectItem itemLabel="Inactive" itemValue="INACTIVE" />
+                        </p:selectOneButton>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <p:commandButton value="Create" update=":administrator-manage-organizations:organization-datatable, :growl-form:messenger-growl" actionListener="#{organizationManagedBean.createOrganization}"></p:commandButton>
+                </div>
+            </h:form>
+        </p:overlayPanel>
     </ui:define>
 
 </ui:composition>

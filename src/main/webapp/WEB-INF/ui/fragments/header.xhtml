@@ -6,7 +6,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html">
 
-    <div class="custom-titlebar navbar navbar-fixed-top">
+    <div class="custom-titlebar navbar">
         <div class="navbar-inner">
             <div class="container">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -18,6 +18,9 @@
 
                 <div class="custom-header-button nav-collapse pull-right">
                     <ul class="nav">
+                        <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                        <li><a href="#"><i class="icon-money"></i> Pricing</a></li>
+                        <li><a href="#"><i class="icon-question-sign"></i> Help</a></li>
                         <li class="dropdown">
                             <div class="btn-group">
                                 <a href="#" role="button" class="btn dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret inverse"></b></a>
@@ -72,17 +75,23 @@
                             </div>
                         </li>
                     </ul>
-                </div><!--/.nav-collapse -->
-
-                <div class="custom-header-nav nav-collapse pull-right">
-                    <ul class="nav">
-                        <li><a href="#"><i class="icon-home"></i> Home</a></li>
-                        <li><a href="#"><i class="icon-money"></i> Pricing</a></li>
-                        <li><a href="#"><i class="icon-question-sign"></i> Help</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
+
+    <h:form id="growl-form">
+        <p:growl id="messenger-growl" sticky="true" showDetail="true" widgetVar="messengerGrowl"></p:growl>
+    </h:form>
+
+    <p:ajaxStatus styleClass="messenger-ajaxstatus">
+        <f:facet name="start">
+            <a class="btn btn-info disabled"><i class="icon-refresh"></i> Please wait...</a>
+        </f:facet>
+
+        <f:facet name="complete">
+            <h:outputText value="" />
+        </f:facet>
+    </p:ajaxStatus>
 
 </ui:composition>
