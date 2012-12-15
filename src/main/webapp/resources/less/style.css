@@ -8517,15 +8517,15 @@ ul.icons li .icon-large:before {
   content: "\f200";
 }
 /* Make the vertical scroll bar always appear so it doesn't cause browser-quakes! */
-/*
 body {
-    overflow-y: scroll;
+  overflow-y: scroll;
+  background: #ffffff url(img/common/grey.png);
 }
-*/
 .messenger-ajaxstatus {
   position: absolute;
   top: 50px;
   left: 46%;
+  z-index: 1023;
 }
 /*
 // Use if using navbar-fixed-top for the navbar.
@@ -8536,6 +8536,9 @@ body {
     }
 }
 */
+.navbar {
+  margin-bottom: 10px;
+}
 /* jQuery overrides */
 .ui-widget {
   font-size: inherit;
@@ -8576,6 +8579,9 @@ body {
 }
 .custom-titlebar .custom-header-button {
   margin-top: 8px;
+}
+.breadcrumb-bar {
+  margin: auto auto 5px;
 }
 .product-backlog-table .serial {
   width: 5%;
