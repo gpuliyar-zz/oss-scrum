@@ -17,12 +17,13 @@ import oss.process.scrum.service.OrganizationService;
 @ManagedBean(name = "organizationManagedBean")
 @RequestScoped
 public class OrganizationManagedBean implements Serializable {
+
     private static final long serialVersionUID = 7739087584554721913L;
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
-
     @ManagedProperty(value = "#{organizationService}")
     private OrganizationService organizationService;
+
     /**
      * @return the organizationService
      */
@@ -36,12 +37,12 @@ public class OrganizationManagedBean implements Serializable {
     public void setOrganizationService(OrganizationService organizationService) {
         this.organizationService = organizationService;
     }
-
     private Organization organization;
 
     @PostConstruct
     public void initalize() {
         organization = new Organization();
+        organization.setStatus("ACTIVE");
     }
 
     /**
@@ -68,14 +69,14 @@ public class OrganizationManagedBean implements Serializable {
         }
     }
 
-    public String updateOrganization() {
+    public void updateOrganization() {
+        FacesContext context = FacesContext.getCurrentInstance();
         try {
             organizationService.update(getOrganization());
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Organization was updated successfully!", this.getOrganization().toString()));
         } catch (AppException e) {
-            return ERROR;
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error updating organization.", e.getLocalizedMessage()));
         }
-
-        return SUCCESS;
     }
 
     public List<Organization> getOrganizations() {
