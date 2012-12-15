@@ -1,21 +1,21 @@
 package oss.process.scrum.managed.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
+import org.primefaces.event.RowEditEvent;
 import oss.process.scrum.domain.Organization;
 import oss.process.scrum.exception.AppException;
 import oss.process.scrum.service.OrganizationService;
 
 @ManagedBean(name = "organizationManagedBean")
-@RequestScoped
+@SessionScoped
 public class OrganizationManagedBean implements Serializable {
 
     private static final long serialVersionUID = 7739087584554721913L;
@@ -23,6 +23,8 @@ public class OrganizationManagedBean implements Serializable {
     private static final String ERROR = "error";
     @ManagedProperty(value = "#{organizationService}")
     private OrganizationService organizationService;
+
+    private List<Organization> organizations;
 
     /**
      * @return the organizationService
@@ -43,6 +45,12 @@ public class OrganizationManagedBean implements Serializable {
     public void initalize() {
         organization = new Organization();
         organization.setStatus("ACTIVE");
+        try {
+            organizations = organizationService.retrieveAll();
+        } catch (AppException e) {
+            // TODO Ask @gpuliyar on how to handle this.
+            organizations = new ArrayList<Organization>();
+        }
     }
 
     /**
@@ -69,22 +77,25 @@ public class OrganizationManagedBean implements Serializable {
         }
     }
 
-    public void updateOrganization() {
+    public void updateOrganization(RowEditEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
+
+        Organization editedOrganization = ((Organization) event.getObject());
+        
         try {
-            organizationService.update(getOrganization());
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Organization was updated successfully!", this.getOrganization().toString()));
+            organizationService.update(editedOrganization);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Organization was updated successfully!", editedOrganization.toString()));
         } catch (AppException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error updating organization.", e.getLocalizedMessage()));
         }
     }
 
     public List<Organization> getOrganizations() {
-        try {
-            return organizationService.retrieveAll();
-        } catch (AppException e) {
-            return null;
-        }
+        return organizations;
+    }
+
+    public void setOrganizations(List<Organization> organizations) {
+        this.organizations = organizations;
     }
 
     public void reset() {
