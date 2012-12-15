@@ -6,8 +6,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
 
-
-
     <h:form id="administrator-manage-organizations">
         <p:toolbar>
             <p:toolbarGroup align="left">
@@ -24,8 +22,21 @@
 
         </p:toolbar>
 
-        <p:dataTable id="organization-datatable" value="#{organizationManagedBean.organizations}" var="organization" editable="true">
-            <p:column headerText="id">
+        <p:dataTable id="organization-datatable"
+                     value="#{organizationManagedBean.organizations}"
+                     var="organization"
+                     editable="true"
+                     widgetVar="organizationDatatable"
+                     emptyMessage="No organizations found."
+                     filteredValue="#{organizationManagedBean.filteredOrganizations}">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <p:inputText styleClass="pull-right" onkeyup="organizationDatatable.filter()" />
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column headerText="id" sortBy="#{organization.id}" filterBy="#{organization.id}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.id}" />
@@ -36,7 +47,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="name">
+            <p:column headerText="name" sortBy="#{organization.name}" filterBy="#{organization.name}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.name}" />
@@ -47,7 +58,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="code">
+            <p:column headerText="code" sortBy="#{organization.code}" filterBy="#{organization.code}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.code}" />
@@ -58,7 +69,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="description">
+            <p:column headerText="description" sortBy="#{organization.description}" filterBy="#{organization.description}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.description}" />
@@ -69,7 +80,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="action">
+            <p:column headerText="action" sortBy="#{organization.action}" filterBy="#{organization.action}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.action}" />
@@ -80,7 +91,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="status">
+            <p:column headerText="status" sortBy="#{organization.status}" filterBy="#{organization.status}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.status}" />

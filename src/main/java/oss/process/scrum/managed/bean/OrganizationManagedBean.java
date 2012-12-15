@@ -25,6 +25,8 @@ public class OrganizationManagedBean implements Serializable {
     private OrganizationService organizationService;
 
     private List<Organization> organizations;
+    private List<Organization> selectedOrganizations;
+    private List<Organization> filteredOrganizations;
 
     /**
      * @return the organizationService
@@ -81,7 +83,7 @@ public class OrganizationManagedBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
 
         Organization editedOrganization = ((Organization) event.getObject());
-        
+
         try {
             organizationService.update(editedOrganization);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Organization was updated successfully!", editedOrganization.toString()));
@@ -96,6 +98,22 @@ public class OrganizationManagedBean implements Serializable {
 
     public void setOrganizations(List<Organization> organizations) {
         this.organizations = organizations;
+    }
+
+    public List<Organization> getSelectedOrganizations() {
+        return selectedOrganizations;
+    }
+
+    public void setSelectedOrganizations(List<Organization> selectedOrganizations) {
+        this.selectedOrganizations = selectedOrganizations;
+    }
+
+    public List<Organization> getFilteredOrganizations() {
+        return filteredOrganizations;
+    }
+
+    public void setFilteredOrganizations(List<Organization> filteredOrganizations) {
+        this.filteredOrganizations = filteredOrganizations;
     }
 
     public void reset() {
