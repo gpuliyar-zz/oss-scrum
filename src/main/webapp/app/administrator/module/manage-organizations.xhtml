@@ -7,36 +7,42 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <h:form id="administrator-manage-organizations">
-        <p:toolbar>
-            <p:toolbarGroup align="left">
-                <p:commandButton id="new-organization-commandbutton" type="button" value="New" icon="ui-icon-document" />
-            </p:toolbarGroup>
-
-            <p:toolbarGroup align="right">
-                <p:menuButton value="Export...">
-                    <p:menuitem value="as PDF" icon="ui-icon-document" />
-                    <p:menuitem value="as Excel" icon="ui-icon-document" />
-                    <p:menuitem value="as CSV" title="Comma separated value file." icon="ui-icon-document" />
-                </p:menuButton>
-            </p:toolbarGroup>
-
-        </p:toolbar>
-
         <p:dataTable id="organization-datatable"
                      value="#{organizationManagedBean.organizations}"
                      var="organization"
                      editable="true"
                      widgetVar="organizationDatatable"
                      emptyMessage="No organizations found."
-                     filteredValue="#{organizationManagedBean.filteredOrganizations}">
+                     filteredValue="#{organizationManagedBean.filteredOrganizations}"
+                     draggableColumns="true"
+                     styleClass="datatable-header-toolbar">
 
             <f:facet name="header">
-                <p:outputPanel>
-                    <p:inputText styleClass="pull-right" onkeyup="organizationDatatable.filter()" />
-                </p:outputPanel>
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <div class="row-fluid">
+                            <div class="span4">
+                                <p:toolbarGroup align="left">
+                                    <p:commandButton styleClass="pull-left" id="new-organization-commandbutton" type="button" value="New" icon="ui-icon-document" />
+                                    <p:menuButton styleClass="pull-left" value="Export...">
+                                        <p:menuitem value="as PDF" icon="ui-icon-document" />
+                                        <p:menuitem value="as Excel" icon="ui-icon-document" />
+                                        <p:menuitem value="as CSV" title="Comma separated value file." icon="ui-icon-document" />
+                                    </p:menuButton>
+                                </p:toolbarGroup>
+                            </div>
+                            <div class="span4">
+
+                            </div>
+                            <div class="span4">
+<!--                                <p:inputText id="globalFilter" styleClass="pull-right" onkeyup="organizationDatatable.filter()" />-->
+                            </div>
+                        </div>
+                    </p:toolbarGroup>
+                </p:toolbar>
             </f:facet>
 
-            <p:column headerText="id" sortBy="#{organization.id}" filterBy="#{organization.id}">
+            <p:column headerText="id" sortBy="#{organization.id}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.id}" />
@@ -47,7 +53,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="name" sortBy="#{organization.name}" filterBy="#{organization.name}">
+            <p:column headerText="name" sortBy="#{organization.name}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.name}" />
@@ -58,7 +64,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="code" sortBy="#{organization.code}" filterBy="#{organization.code}">
+            <p:column headerText="code" sortBy="#{organization.code}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.code}" />
@@ -69,7 +75,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="description" sortBy="#{organization.description}" filterBy="#{organization.description}">
+            <p:column headerText="description" sortBy="#{organization.description}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.description}" />
@@ -80,7 +86,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="action" sortBy="#{organization.action}" filterBy="#{organization.action}">
+            <p:column headerText="action" sortBy="#{organization.action}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.action}" />
@@ -91,7 +97,7 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column headerText="status" sortBy="#{organization.status}" filterBy="#{organization.status}">
+            <p:column headerText="status" sortBy="#{organization.status}">
                 <p:cellEditor>
                     <f:facet name="output">
                         <h:outputText value="#{organization.status}" />
@@ -111,7 +117,7 @@
         </p:dataTable>
     </h:form>
 
-    <p:overlayPanel my="left bottom" id="new-organization-overlaypanel" for="administrator-manage-organizations:new-organization-commandbutton" hideEffect="fade">
+    <p:overlayPanel my="left bottom" id="new-organization-overlaypanel" for="administrator-manage-organizations:organization-datatable:new-organization-commandbutton" hideEffect="fade">
         <h:form styleClass="form-horizontal dropdown-form">
             <legend>Create new organization</legend>
             <div class="control-group">
