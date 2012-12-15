@@ -62,11 +62,10 @@ public class OrganizationManagedBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         try {
             organizationService.create(getOrganization());
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Organization was created successfully!", this.getOrganization().toString()));
         } catch (AppException e) {
-            context.addMessage(null, new FacesMessage("Error creating organization: " + e.getLocalizedMessage()));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error creating organization.", e.getLocalizedMessage()));
         }
-
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Organization was created successfully!", this.getOrganization().toString()));
     }
 
     public String updateOrganization() {
