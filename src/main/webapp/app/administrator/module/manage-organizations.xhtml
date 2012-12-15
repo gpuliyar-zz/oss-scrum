@@ -15,7 +15,10 @@
                      emptyMessage="No organizations found."
                      filteredValue="#{organizationManagedBean.filteredOrganizations}"
                      draggableColumns="true"
-                     styleClass="datatable-header-toolbar">
+                     styleClass="datatable-header-toolbar"
+                     paginator="true"
+                     rows="10"
+                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
 
             <f:facet name="header">
                 <p:toolbar>
@@ -24,18 +27,16 @@
                             <div class="span4">
                                 <p:toolbarGroup align="left">
                                     <p:commandButton styleClass="pull-left" id="new-organization-commandbutton" type="button" value="New" icon="ui-icon-document" />
-                                    <p:menuButton styleClass="pull-left" value="Export...">
-                                        <p:menuitem value="as PDF" icon="ui-icon-document" />
-                                        <p:menuitem value="as Excel" icon="ui-icon-document" />
-                                        <p:menuitem value="as CSV" title="Comma separated value file." icon="ui-icon-document" />
-                                    </p:menuButton>
+                                    <p:commandButton value="Export as XML...">
+                                        <p:dataExporter type="xml" target="organization-datatable" fileName="organizations" />
+                                    </p:commandButton>
                                 </p:toolbarGroup>
                             </div>
                             <div class="span4">
 
                             </div>
                             <div class="span4">
-<!--                                <p:inputText id="globalFilter" styleClass="pull-right" onkeyup="organizationDatatable.filter()" />-->
+                                <!--<p:inputText id="globalFilter" styleClass="pull-right" onkeyup="organizationDatatable.filter()" />-->
                             </div>
                         </div>
                     </p:toolbarGroup>
