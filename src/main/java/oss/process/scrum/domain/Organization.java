@@ -1,6 +1,7 @@
 package oss.process.scrum.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Organization implements Serializable {
     private static final long serialVersionUID = 9063747009972356099L;
@@ -10,7 +11,20 @@ public class Organization implements Serializable {
     private String description;
     private String action;
     private String status;
+    private List<User> users;
 
+    /**
+     * @return the users
+     */
+    public List<User> getUsers() {
+        return users;
+    }
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
     /**
      * @return the id
      */

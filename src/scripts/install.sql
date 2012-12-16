@@ -1,1 +1,3 @@
 source create_table_scr_organization.sql
+source create_table_scr_organization.sql
+
