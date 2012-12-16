@@ -33,7 +33,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public void update(Organization data) throws AppException {
         ScrOrganization scrOrganization = orgToScrOrgMapper.map(data);
-        organizationDao.persist(scrOrganization);
+        organizationDao.merge(scrOrganization);
     }
 
     @Override

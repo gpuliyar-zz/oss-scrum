@@ -3,6 +3,8 @@ package oss.process.scrum.managed.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,6 +12,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
+
+import oss.process.scrum.dao.vo.ScrOrganization;
 import oss.process.scrum.domain.Organization;
 import oss.process.scrum.exception.AppException;
 import oss.process.scrum.service.OrganizationService;
@@ -17,42 +21,55 @@ import oss.process.scrum.service.OrganizationService;
 @ManagedBean(name = "organizationManagedBean")
 @SessionScoped
 public class OrganizationManagedBean implements Serializable {
-
     private static final long serialVersionUID = 7739087584554721913L;
-    private static final String SUCCESS = "success";
-    private static final String ERROR = "error";
     @ManagedProperty(value = "#{organizationService}")
     private OrganizationService organizationService;
 
     private List<Organization> organizations;
     private List<Organization> selectedOrganizations;
     private List<Organization> filteredOrganizations;
-
-    /**
-     * @return the organizationService
-     */
-    public OrganizationService getOrganizationService() {
-        return organizationService;
-    }
-
-    /**
-     * @param organizationService the organizationService to set
-     */
-    public void setOrganizationService(OrganizationService organizationService) {
-        this.organizationService = organizationService;
-    }
     private Organization organization;
 
-    @PostConstruct
-    public void initalize() {
-        organization = new Organization();
-        organization.setStatus("ACTIVE");
-        try {
-            organizations = organizationService.retrieveAll();
-        } catch (AppException e) {
-            // TODO Ask @gpuliyar on how to handle this.
-            organizations = new ArrayList<Organization>();
-        }
+    /**
+     * @return the organizations
+     */
+    public List<Organization> getOrganizations() {
+        return organizations;
+    }
+
+    /**
+     * @param organizations the organizations to set
+     */
+    public void setOrganizations(List<Organization> organizations) {
+        this.organizations = organizations;
+    }
+
+    /**
+     * @return the selectedOrganizations
+     */
+    public List<Organization> getSelectedOrganizations() {
+        return selectedOrganizations;
+    }
+
+    /**
+     * @param selectedOrganizations the selectedOrganizations to set
+     */
+    public void setSelectedOrganizations(List<Organization> selectedOrganizations) {
+        this.selectedOrganizations = selectedOrganizations;
+    }
+
+    /**
+     * @return the filteredOrganizations
+     */
+    public List<Organization> getFilteredOrganizations() {
+        return filteredOrganizations;
+    }
+
+    /**
+     * @param filteredOrganizations the filteredOrganizations to set
+     */
+    public void setFilteredOrganizations(List<Organization> filteredOrganizations) {
+        this.filteredOrganizations = filteredOrganizations;
     }
 
     /**
@@ -69,8 +86,35 @@ public class OrganizationManagedBean implements Serializable {
         this.organization = organization;
     }
 
+    /**
+     * @return the organizationService
+     */
+    public OrganizationService getOrganizationService() {
+        return organizationService;
+    }
+
+    /**
+     * @param organizationService the organizationService to set
+     */
+    public void setOrganizationService(OrganizationService organizationService) {
+        this.organizationService = organizationService;
+    }
+
+    @PostConstruct
+    public void initalize() {
+        organization = new Organization();
+        try {
+            organizations = organizationService.retrieveAll();
+        } catch (AppException e) {
+            organizations = new ArrayList<Organization>();
+        }
+    }
+
     public void createOrganization() {
         FacesContext context = FacesContext.getCurrentInstance();
+        this.getOrganization().setId(UUID.randomUUID().toString());
+        this.getOrganization().setStatus(ScrOrganization.Status.ACTIVE.toString());
+
         try {
             organizationService.create(getOrganization());
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Organization was created successfully!", this.getOrganization().toString()));
@@ -81,7 +125,6 @@ public class OrganizationManagedBean implements Serializable {
 
     public void updateOrganization(RowEditEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
-
         Organization editedOrganization = ((Organization) event.getObject());
 
         try {
@@ -92,36 +135,8 @@ public class OrganizationManagedBean implements Serializable {
         }
     }
 
-    public List<Organization> getOrganizations() {
-        return organizations;
-    }
-
-    public void setOrganizations(List<Organization> organizations) {
-        this.organizations = organizations;
-    }
-
-    public List<Organization> getSelectedOrganizations() {
-        return selectedOrganizations;
-    }
-
-    public void setSelectedOrganizations(List<Organization> selectedOrganizations) {
-        this.selectedOrganizations = selectedOrganizations;
-    }
-
-    public List<Organization> getFilteredOrganizations() {
-        return filteredOrganizations;
-    }
-
-    public void setFilteredOrganizations(List<Organization> filteredOrganizations) {
-        this.filteredOrganizations = filteredOrganizations;
-    }
-
     public void reset() {
-        organization.setAction(null);
-        organization.setCode(null);
-        organization.setDescription(null);
-        organization.setId(null);
-        organization.setName(null);
-        organization.setStatus(null);
+        organization = null;
+        organization = new Organization();
     }
 }
