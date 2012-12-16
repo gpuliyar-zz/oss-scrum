@@ -103,6 +103,8 @@ public class OrganizationManagedBean implements Serializable {
     @PostConstruct
     public void initalize() {
         organization = new Organization();
+        organization.initializeUsers();
+
         try {
             organizations = organizationService.retrieveAll();
         } catch (AppException e) {

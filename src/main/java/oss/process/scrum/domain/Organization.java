@@ -1,6 +1,7 @@
 package oss.process.scrum.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -99,6 +100,10 @@ public class Organization implements Serializable {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void initializeUsers() {
+        this.users = new ArrayList<User>();
     }
 
     @Override
