@@ -3,6 +3,9 @@ package oss.process.scrum.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 public class Organization implements Serializable {
     private static final long serialVersionUID = 9063747009972356099L;
     private String id;
@@ -100,6 +103,6 @@ public class Organization implements Serializable {
 
     @Override
     public String toString() {
-        return "Organization{" + "id=" + id + ", name=" + name + ", code=" + code + ", description=" + description + ", action=" + action + ", status=" + status + '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
