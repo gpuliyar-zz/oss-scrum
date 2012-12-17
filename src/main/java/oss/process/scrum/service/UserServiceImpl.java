@@ -41,13 +41,4 @@ public class UserServiceImpl implements UserService {
 
         return filteredUsers;
     }
-
-    public static void main(String args[]) {
-        String query = "rish";
-        for (User user : users) {
-            if (user.getEmailId().contains(query) || user.getFirstName().contains(query) || user.getLastName().contains(query)) {
-                System.out.println(user.getEmailId());
-            }
-        }
-    }
 }
