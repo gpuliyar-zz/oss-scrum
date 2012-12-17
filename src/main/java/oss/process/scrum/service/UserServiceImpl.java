@@ -1,49 +1,53 @@
 package oss.process.scrum.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import oss.process.scrum.domain.User;
+
 @Service(value = "userService")
-public class UserServiceImpl implements UserDetailsService {
-    private Map<String, User> users = new HashMap<String, User>();
+public class UserServiceImpl implements UserService {
+    private static List<User> users;
 
     @PostConstruct
     public void init() {
-        boolean enabled = true;
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
-
-        List<GrantedAuthority> adminAuthorities = new ArrayList<GrantedAuthority>();
-        adminAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-
-        List<GrantedAuthority> userAuthorities = new ArrayList<GrantedAuthority>();
-        userAuthorities.add(new SimpleGrantedAuthority("ROLE_REGISTERED"));
-
-        users.put("admin", new User("admin", "admin", enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, adminAuthorities));
-        users.put("users", new User("users", "users", enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, userAuthorities));
+        users = new ArrayList<User>();
+        User user = new User();
+        user.setEmailId("gpuliyar@metricstream.com");
+        user.setFirstName("Gopalakrishnan");
+        user.setLastName("P");
+        user.setUsername("gpuliyar");
+        users.add(user);
+        user = new User();
+        user.setEmailId("rishabhr@metricstream.com");
+        user.setFirstName("Rishabh");
+        user.setLastName("Rao");
+        user.setUsername("rishabhr");
+        users.add(user);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = users.get(username);
+    public List<User> getUsers(String query) {
+        List<User> filteredUsers = new ArrayList<User>();
+        for (User user : users) {
+            if (user.getEmailId().contains(query) || user.getFirstName().contains(query) || user.getLastName().contains(query)) {
+                filteredUsers.add(user);
+            }
+        }
 
-        if (user != null) {
-            return user;
-        } else {
-            throw new UsernameNotFoundException("UserAccount for name \"" + username + "\" not found.");
+        return filteredUsers;
+    }
+
+    public static void main(String args[]) {
+        String query = "rish";
+        for (User user : users) {
+            if (user.getEmailId().contains(query) || user.getFirstName().contains(query) || user.getLastName().contains(query)) {
+                System.out.println(user.getEmailId());
+            }
         }
     }
 }

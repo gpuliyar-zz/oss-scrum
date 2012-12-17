@@ -15,8 +15,10 @@ import org.primefaces.event.RowEditEvent;
 
 import oss.process.scrum.dao.vo.ScrOrganization;
 import oss.process.scrum.domain.Organization;
+import oss.process.scrum.domain.User;
 import oss.process.scrum.exception.AppException;
 import oss.process.scrum.service.OrganizationService;
+import oss.process.scrum.service.UserService;
 
 @ManagedBean(name = "organizationManagedBean")
 @SessionScoped
@@ -24,6 +26,8 @@ public class OrganizationManagedBean implements Serializable {
     private static final long serialVersionUID = 7739087584554721913L;
     @ManagedProperty(value = "#{organizationService}")
     private OrganizationService organizationService;
+    @ManagedProperty(value = "#{userService}")
+    private UserService userService;
 
     private List<Organization> organizations;
     private List<Organization> selectedOrganizations;
@@ -140,5 +144,9 @@ public class OrganizationManagedBean implements Serializable {
     public void reset() {
         organization = null;
         organization = new Organization();
+    }
+
+    public List<User> completeUsers(String query) {
+        return userService.getUsers(query);
     }
 }
