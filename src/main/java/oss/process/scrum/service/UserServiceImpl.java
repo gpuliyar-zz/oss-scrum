@@ -11,7 +11,7 @@ import oss.process.scrum.domain.User;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
-    private static List<User> users;
+    private List<User> users;
 
     @PostConstruct
     public void init() {
